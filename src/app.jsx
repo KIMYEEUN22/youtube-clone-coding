@@ -3,7 +3,7 @@ import "./app.css";
 import VideoList from "./compoents/video_list/video_list";
 
 function App() {
-  const [videos, setVideos] = useState([]);
+  const [vidoes, setVideos] = useState([]);
 
   useEffect(() => {
     const requestOptions = {
@@ -19,7 +19,7 @@ function App() {
       .then((result) => setVideos(result.items))
       .catch((error) => console.log("error", error));
   }, []);
-  return <VideoList videos={videos} />;
+  return <VideoList videos={vidoes} />;
 }
 
 export default App;
