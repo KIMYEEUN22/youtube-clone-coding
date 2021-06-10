@@ -1,14 +1,15 @@
 import React from "react";
+import { memo } from "react";
 import { useRef } from "react";
 import styles from "./header.module.css";
 
-const Header = (props) => {
+const Header = memo(({ onSearch }) => {
   const inputRef = useRef();
 
   const handleSearch = () => {
     const input = inputRef.current.value;
     console.log(input);
-    props.onSearch(input);
+    onSearch(input);
   };
   const onKeyPress = (event) => {
     if (event.code === "Enter") {
@@ -18,8 +19,6 @@ const Header = (props) => {
   const onClick = () => {
     handleSearch();
   };
-
-  // 버튼 누르면 아이템 리스트 재배열 하도록 함수 만들고 그 다음 키워드 변수로 보내서 검색 기능 완성하기
 
   return (
     <header className={styles.header}>
@@ -39,6 +38,6 @@ const Header = (props) => {
       </button>
     </header>
   );
-};
+});
 
 export default Header;

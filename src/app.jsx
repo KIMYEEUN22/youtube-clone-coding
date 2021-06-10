@@ -3,6 +3,7 @@ import Header from "./compoents/header/header";
 import VideoList from "./compoents/video_list/video_list";
 import styles from "./app.module.css";
 import VideoDetail from "./compoents/video_detail/video_detail";
+import { useCallback } from "react";
 
 function App({ youtube }) {
   const [videos, SetVideo] = useState([]);
@@ -16,14 +17,17 @@ function App({ youtube }) {
     youtube
       .mostPopular() //
       .then((items) => SetVideo(items));
-  }, []);
+  }, [youtube]);
 
-  const search = (input) => {
-    youtube
-      .search(input) //
-      .then((items) => SetVideo(items));
-    setSelectedVideo(null);
-  };
+  const search = useCallback(
+    (input) => {
+      youtube
+        .search(input) //
+        .then((items) => SetVideo(items));
+      setSelectedVideo(null);
+    },
+    [youtube]
+  );
 
   return (
     <div className={styles.app}>
