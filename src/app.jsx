@@ -22,6 +22,7 @@ function App({ youtube }) {
     youtube
       .search(input) //
       .then((items) => SetVideo(items));
+    setSelectedVideo(null);
   };
 
   return (
